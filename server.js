@@ -5,7 +5,16 @@ const axios = require('axios');
 
 // Configuración del servidor
 const app = express();
-app.use(cors());
+// app.use(cors());
+
+
+
+// Configurar CORS de manera más permisiva
+app.use(cors({
+    origin: '*', // Permitir solicitudes desde cualquier origen
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'X-Requested-With', 'api-key']
+}));
 
 // Configuración de la API
 const API_URL = 'http://10.194.5.185/cbrecaudaciones/valores-pendientes/';
