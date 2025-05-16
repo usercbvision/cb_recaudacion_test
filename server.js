@@ -7,14 +7,12 @@ const axios = require('axios');
 const app = express();
 // app.use(cors());
 
-
-
-// Configurar CORS de manera más permisiva
 app.use(cors({
     origin: '*', // Permitir solicitudes desde cualquier origen
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'X-Requested-With', 'api-key']
 }));
+
 
 // Configuración de la API
 const API_URL = 'http://10.194.5.185/cbrecaudaciones/valores-pendientes/';
@@ -56,12 +54,9 @@ app.get('/api/:cedula', async (req, res) => {
         }
     }
 });
-
-// Ruta de prueba para verificar que el servidor está funcionando
 app.get('/test', (req, res) => {
-    res.json({ status: 'ok', message: 'Servidor proxy funcionando correctamente' });
+    res.json({ status: 'ok', message: 'Servidor funcionando correctamente' });
 });
-
 // Puerto
 const PORT = process.env.PORT || 3001;
 
