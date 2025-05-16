@@ -13,8 +13,6 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'X-Requested-With', 'api-key']
 }));
 
-
-// Configuración de la API
 const API_URL = 'http://10.194.5.185/cbrecaudaciones/valores-pendientes/';
 const API_KEY = '9c5bfd0e-acde-4b1c-b3a1-de97e76d08a7';
 
@@ -33,19 +31,17 @@ app.get('/api/:cedula', async (req, res) => {
             }
         });
 
-        // Enviar la respuesta al cliente
         console.log(`[Server] Respuesta exitosa para cédula: ${cedula}`);
         res.json(response.data);
 
     } catch (error) {
         console.error(`[Server] Error al consultar cédula ${cedula}:`, error.message);
 
-        // Manejar diferentes tipos de errores
         if (error.response) {
-            // El servidor respondió con un código de error
+
             res.status(error.response.status).json(error.response.data);
         } else {
-            // Error de red u otros
+
             res.status(500).json({
                 error: true,
                 message: 'Error al realizar la consulta',
@@ -60,7 +56,6 @@ app.get('/test', (req, res) => {
 // Puerto
 const PORT = process.env.PORT || 3001;
 
-// Iniciar el servidor
 app.listen(PORT, () => {
     console.log(`Servidor proxy ejecutándose en: http://localhost:${PORT}`);
     console.log(`Para consultar cédulas: http://localhost:${PORT}/api/NUMERO_CEDULA`);
